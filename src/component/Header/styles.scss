@@ -38,15 +38,20 @@
       }
 
       li {
+        display: inline-block;
         list-style-type: none;
-      }
+        margin-right: 1.5em;
 
-      a {
-        font-size: 1.8 rem;
-        line-height: 1;
-        color: black;
-        text-decoration: none;
-        text-transform: uppercase;
+        &:last-child {
+          margin-right: 0;
+        }
+        a {
+          font-size: 1.8 rem;
+          line-height: 1;
+          color: black;
+          text-decoration: none;
+          text-transform: uppercase;
+        }
       }
     }
   }
