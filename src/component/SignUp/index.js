@@ -2,9 +2,8 @@ import React from "react";
 import "./styles.scss";
 
 import { auth, handleUserProfile } from "../../firebase/utils";
-
+import AuthWrapper from "../AuthWrapper";
 import FormInput from "../forms/FormInput";
-import Button from "../forms/Button";
 import Buttons from "../forms/Button";
 
 const initialState = {
@@ -65,54 +64,53 @@ class SignUp extends React.Component {
       confirmPassword,
       errors,
     } = this.state;
+
+    const configAuthWrapper = {
+      headLine: "Sign up",
+    };
     return (
-      <div className="sign-up">
-        <div className="wrap">
-          <h2>Sign Up</h2>
-
-          {errors.length > 0 && (
-            <ul>
-              {errors.map((err, index) => {
-                return <li key={index}>{err}</li>;
-              })}
-            </ul>
-          )}
-
-          <form onSubmit={this.handleFormSubmit}>
-            <div className="formWrap">
-              <FormInput
-                type="text"
-                name="displayName"
-                value={displayName}
-                placeholder="Full name"
-                onChange={this.handleChange}
-              />
-              <FormInput
-                type="email"
-                name="email"
-                value={email}
-                placeholder="Email"
-                onChange={this.handleChange}
-              />
-              <FormInput
-                type="password"
-                name="password"
-                value={password}
-                placeholder="Password"
-                onChange={this.handleChange}
-              />
-              <FormInput
-                type="password"
-                name="confirmPassword"
-                value={confirmPassword}
-                placeholder="Confirm Password"
-                onChange={this.handleChange}
-              />
-              <Buttons type="submit">Sign Up</Buttons>
-            </div>
-          </form>
-        </div>
-      </div>
+      <AuthWrapper {...configAuthWrapper}>
+        <form onSubmit={this.handleFormSubmit}>
+          <div className="formWrap">
+            {errors.length > 0 && (
+              <ul>
+                {errors.map((err, index) => {
+                  return <li key={index}>{err}</li>;
+                })}
+              </ul>
+            )}
+            <FormInput
+              type="text"
+              name="displayName"
+              value={displayName}
+              placeholder="Full name"
+              onChange={this.handleChange}
+            />
+            <FormInput
+              type="email"
+              name="email"
+              value={email}
+              placeholder="Email"
+              onChange={this.handleChange}
+            />
+            <FormInput
+              type="password"
+              name="password"
+              value={password}
+              placeholder="Password"
+              onChange={this.handleChange}
+            />
+            <FormInput
+              type="password"
+              name="confirmPassword"
+              value={confirmPassword}
+              placeholder="Confirm Password"
+              onChange={this.handleChange}
+            />
+            <Buttons type="submit">Sign Up</Buttons>
+          </div>
+        </form>
+      </AuthWrapper>
     );
   }
 }
